@@ -1,0 +1,214 @@
+    html, body {
+        height: 100%;
+    }
+
+    #layout {
+        height: 100%;
+        background: aliceblue;
+        padding: 20px;
+    }
+
+
+    .space {
+        width: 25px;
+    }
+
+    #tabs {
+        display: flex;
+    }
+
+    #addtab {
+        margin-left: 10px;
+        display: flex;
+    }
+
+    .tab {
+        padding-left: 10px;
+        display: flex;
+        border-right: 1px solid #cec2c2;
+        border-top: 1px solid #cec2c2;
+        border-left: 1px solid #cec2c2;
+        border-bottom: 0px;
+        background-color: #efefef;
+        border-radius: 5px 5px 0px 0px;
+    }
+
+    .tab:hover {
+        display: flex;
+        border: 1px solid #cec2c2;
+        border-radius: 5px 5px 0px 0px;
+        background: #f1f8fa;
+        border-bottom: 0px;
+    }
+
+
+    .tab.active {
+        display: flex;
+        border: 1px solid #cec2c2;
+        border-radius: 5px 5px 0px 0px;
+        background: #dee1e2;
+        border-bottom: 0px;
+    }
+
+    .ID {
+        margin: 20px;
+    }
+
+    #windows {
+        height: 90%;
+        width: 100%;
+        display: flex;
+    }
+
+    .window {
+        background: #dee1e2;
+        padding: 20px;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .commands {
+        width: 40%;
+        height: 60%;
+        overflow: auto;
+    }
+
+    .terminal {
+        width: 60%;
+        height:60%;
+    }
+
+
+    .terminal textarea, .terminal fieldset{
+        width: 100%;
+        height: 95%;
+    }
+
+    .table fieldset {
+        width: 99%;
+        height: 95%;
+        overflow: auto;
+    }
+
+    .table {
+        height: 30%;
+    }
+
+    .table table td{
+        padding: 5px;
+    }
+
+    .terminal fieldset, .table fieldset {
+        padding: 0.35em 0.625em 0.75em;
+        margin: 0 2px;
+        border: 1px solid #c0c0c0;
+    }
+
+    .terminal legend, .table legend {
+        width: auto;
+        font-size: 14px;
+        margin-bottom: auto;
+    }
+
+    .commands div {
+        margin-bottom: 10px;
+    }
+
+    .commandLine {
+        width: 80%;
+    }
+
+    .commandLine input{
+        width: 95%;
+    }
+    .close {
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+
+
+    table#title h1 {
+        font-size: 32px;
+        margin-top: 0px;
+        margin-botom: 35px;
+        font-family: Times;
+        color: #925656;
+        text-align: center;
+        text-shadow: 1px 1px 1px #d2d0dc;
+    }
+
+    .w100 {
+        width: 100%;
+    }
+
+    .w25 {
+        width: 25%;
+    }
+
+    .w50 {
+        width: 50%;
+    }
+
+    .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #login{
+        text-align: center;
+    }
+
+    #login td {
+        padding: 2px;
+        text-align: left;
+    }
+
+    #login th {
+        padding: 3px;
+        text-align: center;
+    }
+
+    #login td.alarm {
+        color: coral;
+        text-align: center;
+    }
+
+    #login input[type='submit']{
+        margin: 10px;
+    }
+
+    #windows :disabled {
+        background: #cacaca;
+    }
+
+    #addtab, #addtab b {
+        cursor: default;
+    }
+    span.id {
+        cursor: default;
+    }
+
+    #addtab:hover , #addtab b:hover {
+        color:#37a871;
+        text-shadow: 1px 1px 2px #d5adad;
+    }
+
+    #clearTerm {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .table {
+        overflow: auto;
+    }
+
+    .notequal {
+        color: #bd3a3a;;
+    }
+
+    .newData {
+        color: #0716ef;
+    }

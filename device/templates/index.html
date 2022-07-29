@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+<script>
+    const USER='{{ request.user.username }}';
+</script>
+<script src="{% static '/js/utils.js' %}"></script>
+<script src="{% static '/js/vue/dist/vue.global.js' %}"></script>
+<script src="{% static '/js/index.js' %}"></script>
+<div id="layout">
+    <table id="title" class="w100">
+        <tr>
+            <td class="w25 text-left"></td>
+            <td class="w50 text-center"><h1>Терминал администратора [[alert]] службы Messenger</h1></td>
+            <td class="w25 text-right">
+                Вы зарегестрированны как: <b>{{ request.user.username }}</b>
+                <br>
+                <a href="{% url 'logout' %}">Выйти</a>
+            </td>
+        </tr>
+    </table>
+
+    <div id="tabs">
+        <span v-for="(tab, index) in tabs" v-bind:class="tab.class" v-bind:index="index" v-on:click="selectTab(index)">
+            <span class="id" >[[ tab.device ]]</span>
+            <span class="space"></span>
+            <span class="close"><sup>x</sup></span>
+        </span>
+
+        <span id="addtab" v-on:click="addTab"><b>+</b></span>
+    </div>
+    <div id="windows" class="noconnection">
+        <div class="window">
+            <div class="commands">
+                <div><label>Контроллер
+                        <input id="device" type="text" :disabled="notconnected" class="ID" v-model="activeTab.deviceInput" v-bind:subscribed="activeTab.subscribed">
+                    </label>
+                    <button class="btn btn-info" v-on:click="subscribe" :disabled="activeTab.device===activeTab.deviceInput || notconnected" >Подписаться</button></div>
+                    <div v-for="(command, index) in activeTab.commands" class="command">
+                        <label class="commandLine" >Комманда <input type="text" :disabled="notsubscribed || notconnected" v-model="activeTab.commands[index]" list="commandsdata"></label>
+                        <button class="btn btn-primary" v-on:click="run(index)" :disabled="notsubscribed || notconnected || activeTab.commands[index]==''">Выполнить</button>
+                    </div>
+            </div>
+            <div class="terminal">
+                <fieldset>
+                    <legend>Терминал</legend>
+                    <textarea id="terminalTA" v-bind:wrap="wrap" readonly="readonly">[[ terminalText ]]</textarea>
+                    <br>
+                    <label><input id="lineBreak" v-model="lineBreak" type="checkbox" checked="true"> перенос строки </label>
+                    <button id="clearTerm" class="btn btn-warning" v-on:click="clearTerminal"> Очистить терминал </button>
+                    <label><input id="autoScroll"  v-model="autoScroll"  type="checkbox" checked="true"> автоскролл </label>
+                    <br>
+                </fieldset>
+            </div>
+            <br>
+            <div class="table">
+                <fieldset  id="tData">
+                    <legend>Данные</legend>
+                        <table>
+<!--                            <tr>-->
+<!--                                <th v-for="header in tableHeaders">-->
+<!--                                    [[ header ]]-->
+<!--                                </th>-->
+                            </tr>
+                            <tr v-for="(row,index) in activeTab.tableData">
+                                <td v-for="header in tableHeaders" v-bind:class="activeTab.tableClass[index][header]">
+                                    [[header]]=[[ row[header] ]]
+                                </td>
+                            </tr>
+                        </table>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
+<datalist id="commandsdata">
+    <option value="DRQ"></option>
+    <option value="XRQ"></option>
+    <option value="g v"></option>
+    <option value="reboot"></option>
+    <option value="gsmreboot"></option>
+    <option value="g log"></option>
+    <option value="e log"></option>
+    <option value="s log 65535 65535"></option>
+    <option value="s log 32767 32767 "></option>
+</datalist>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block body %}
+<div id="layout" class="center">
+    <div id="login">
+        <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        <table>
+        <tr>
+            <th colspan="2">Авторизация</th>
+        </tr>
+        {% if form.errors %}
+            <tr>
+                <td colspan="2" class="alarm">Пользователь или пароль не совпадают.
+                    <br>
+                    Попробуйте снова или
+                    <br>
+                    обратитесь к программисту.
+                </td>
+            </tr>
+        {% endif %}
+        <tr>
+            <td><b>Пользователь</b></td>
+            <td>{{ form.username }}</td>
+        </tr>
+        <tr>
+            <td><b>Пароль</b></td>
+            <td>{{ form.password }}</td>
+        </tr>
+        </table>
+
+        <input type="submit" class="btn btn-primary" value="Войти">
+        <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
+</div>
+{% endblock %}
